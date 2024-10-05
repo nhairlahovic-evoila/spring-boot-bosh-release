@@ -1,0 +1,6 @@
+name: spring-boot
+
+blobstore:
+  provider: local
+  options:
+    blobstore_path: /tmp

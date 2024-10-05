@@ -1,0 +1,8 @@
+---
+name: spring-app
+
+dependencies:
+- java
+
+files:
+- greeting-service/**

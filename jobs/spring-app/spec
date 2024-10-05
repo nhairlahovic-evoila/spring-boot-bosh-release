@@ -1,0 +1,17 @@
+---
+name: spring-app
+
+templates:
+  ctl: bin/ctl
+
+packages:
+- java
+- spring-app
+
+properties:
+  port:
+    description: "Port on which the Spring app should run"
+    default: 8080
+  greeting:
+    description: "Greeting message displayed by the Spring app"
+    default: "Hello"

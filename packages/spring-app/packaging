@@ -1,0 +1,27 @@
+#!/bin/bash
+
+set -ex
+
+# Set HOME environment variable and Maven user home for packaging
+export HOME=/var/vcap/data
+export MAVEN_USER_HOME=/var/vcap/data/maven
+
+# Set JAVA_HOME and update PATH to use the installed Java package
+export JAVA_HOME=/var/vcap/packages/java
+export PATH=$JAVA_HOME/bin:$PATH
+
+# Navigate to the greeting-service directory
+cd ${BOSH_COMPILE_TARGET}/greeting-service
+
+# Build the JAR using Maven (ensure Maven is installed in the build environment
+# Run Maven once to ensure the wrapper downloads the Maven distribution
+./mvnw clean package || true
+
+# Set execute permission on the Maven binary
+chmod a+x $MAVEN_USER_HOME/wrapper/dists/apache-maven-*/**/bin/mvn
+
+# Run the Maven build again
+./mvnw clean package
+
+# Copy the JAR file from the Maven target directory to BOSH_INSTALL_TARGET
+cp target/*.jar ${BOSH_INSTALL_TARGET}/app.jar

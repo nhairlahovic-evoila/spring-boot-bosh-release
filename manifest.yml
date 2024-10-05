@@ -1,0 +1,31 @@
+name: greeting-app
+
+releases:
+- name: spring-boot
+  version: latest
+
+stemcells:
+- alias: default
+  os: ubuntu-jammy
+  version: latest
+
+instance_groups:
+- name: spring-app
+  instances: 1
+  azs: [az1]
+  vm_type: small
+  stemcell: default
+  networks:
+  - name: services
+  jobs:
+  - name: spring-app
+    release: spring-boot
+    properties:
+      port: 8081
+      greeting: "Zdravo"
+
+update:
+  canaries: 1
+  max_in_flight: 2
+  canary_watch_time: 1000-30000
+  update_watch_time: 1000-30000

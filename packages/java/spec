@@ -1,0 +1,7 @@
+---
+name: java
+
+dependencies: []
+
+files:
+- java/jdk-17.0.11_linux-x64_bin.tar.gz
