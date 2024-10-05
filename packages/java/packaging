@@ -3,5 +3,5 @@
 set -ex
 
 tar xzf java/jdk-17.0.11_linux-x64_bin.tar.gz
-cp -R jdk-17.0.11/* ${BOSH_INSTALL_TARGET}
+cp -R jdk-17*/* ${BOSH_INSTALL_TARGET}
 
